@@ -8,6 +8,7 @@ class QuestionModel(models.Model):
     question_desc= models.TextField()
     ques_img=models.ImageField(upload_to="QuestionImg",blank=True,null=True)
     ques_votes=models.IntegerField(default=0)
+    objects=object.models.manager()
 
     def __str__(self):
         return(self.title)

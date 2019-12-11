@@ -1,5 +1,6 @@
 from django.urls import path
+from .views import addquestion
 
 urlpatterns=[
-    #path('',"qnaapp")
+    path('addquestion/',addquestion)
 ]
