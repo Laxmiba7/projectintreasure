@@ -30,7 +30,7 @@ def question(request):
 
 def queslist(request):
     queslist=QuestionModel.objects.all()
-    return render(request,'questionmodel_list',{'list':queslist})
+    return render(request,'questionmodel_list.html',{'queslist':queslist})
 
 def update_question(request,id):
     question= QuestionModel.objects.get(id=id)
@@ -50,3 +50,10 @@ def update_question(request,id):
         return render(request,'questionmodel_update.html',{'form':form})
 
 
+
+def del_question(request,id):
+    question= QuestionModel.objects.get(id=id)
+    question.delete()
+    # return HttpResponse("deletequestionmodel_list.html")
+    #question=QuestionModel.objects.all()
+    return redirect('qna:queslist')

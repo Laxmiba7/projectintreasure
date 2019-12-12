@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    This is a question form.
+    <a href="{%url 'qna:add' %}"><button>Add Question</button></a>
+    {% for q in queslist %}
+        <h2>{{q.title}}</h2>
+        <h3>{{q.ques_desc}}</h3>
+        <h3>{{q.timestamp}}</h3>
+       {% if q.ques_img %}
+        <img src="../../media/{{q.ques_img}}" height="100px" width="100px" >
+{% endif %}
+<a href="{%url 'qna:update' q.id %}"><button>Update</button></a>
+<a href="{%url 'qna:del' q.id %}"><button>Delete</button></a>
+
+{% endfor %}
+
+
+
+</body>
+</html>
