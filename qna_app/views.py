@@ -15,9 +15,10 @@ def addquestion(request):
                 return HttpResponse('Failed')
         else:
             return HttpResponse(form.errors)
-    form= QuestionForm
+    else:
+        form= QuestionForm
     #question=QuestionModel.objects.all()
-    return render(request,'questionmodel_create.html',{'d':form})
+        return render(request,'questionmodel_create.html',{'d':form})
 
 def popques(request):
     pop=QuestionModel.objects.filter(ques_votes__gt=2)
@@ -30,3 +31,22 @@ def question(request):
 def queslist(request):
     queslist=QuestionModel.objects.all()
     return render(request,'questionmodel_list',{'list':queslist})
+
+def update_question(request,id):
+    question= QuestionModel.objects.get(id=id)
+    if request.method=="POST":
+        form=QuestionForm(request.POST,request.FILES,instance=question) #request.files is for images
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('qna:update', id)
+            except:
+                return HttpResponse('Failed')
+        else:
+            return HttpResponse(form.errors)
+    else:
+        form= QuestionForm(instance=question)
+    #question=QuestionModel.objects.all()
+        return render(request,'questionmodel_update.html',{'form':form})
+
+
