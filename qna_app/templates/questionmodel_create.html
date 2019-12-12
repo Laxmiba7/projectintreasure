@@ -1,6 +1,22 @@
 <form method="POST" enctype="multipart/form-data"> 
     {% csrf_token %}
-    {{ d.as_p }}
-    <input type="submit" value="submit">
-
+    {{form.errors}}
+    Title:<input type="text" name="title" > <br><br>
+    posted_by<input type="text" name="posted_by"><br><br>
+     Description:<input type="text" name="question_desc"><br><br>
+     Image:<input type="file" name="ques_img"><br><br>
+     Category:<select name=" ques_cat">
+            {% for c in cat %}
+            <option value="{{c.id}}">{{c.cat_title}}</option>
+           {% endfor %}
+           </select>
+        <br>  
+     <input type="hidden" name="ques_votes" value="0">
+<br> <br>
+     <input type="submit" value="submit">
 </form>
+
+     
+
+
+

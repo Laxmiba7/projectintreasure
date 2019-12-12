@@ -2,6 +2,17 @@ from django.shortcuts import render,redirect
 from .models import QuestionModel,AnswerModel,CategoryModel
 from .forms import QuestionForm
 from django.http import HttpResponse
+from django.views.generic import CreateView
+from django.views.generic import ListView
+
+class QuestionModelCreateView(CreateView):
+    model=QuestionModel
+    fields='__all__'
+
+class QuestionModelListView(ListView):
+    model=QuestionModel
+    queryset=QuestionModel.objects.all()
+
 
 # Create your views here.
 def addquestion(request):
@@ -16,9 +27,10 @@ def addquestion(request):
         else:
             return HttpResponse(form.errors)
     else:
-        form= QuestionForm
+        #form= QuestionForm
+        category= CategoryModel.objects.all()
     #question=QuestionModel.objects.all()
-        return render(request,'questionmodel_create.html',{'d':form})
+        return render(request,'questionmodel_create.html',{'cat':category})
 
 def popques(request):
     pop=QuestionModel.objects.filter(ques_votes__gt=2)
