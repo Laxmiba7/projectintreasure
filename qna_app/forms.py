@@ -3,5 +3,5 @@ from .models import QuestionModel,AnswerModel
 
 class QuestionForm(forms.ModelForm):
     class Meta:             #change attribute of parent form
-        model= QuestionForm
+        model= QuestionModel
         fields='__all__'

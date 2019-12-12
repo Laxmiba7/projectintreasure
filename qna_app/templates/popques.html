@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Popular Question</title>
+    <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+            th, td {
+              padding: 15px;
+              text-align: left;
+            }
+            table#t01 {
+              width: 100%;    
+              background-color: #f1f1c1;
+            }
+    </style>
+</head>
+<body>
+        <h1>This is the table.</h1>
+        
+    <table id="t01">
+        <th></th>
+        {% for q in p %}
+        
+        <tr>
+            <td>
+                
+                <h2>{{q.title}}</h2>
+                <h3><b>{{q.posted_by}}, {{ques.timestamp|date:'Y-M-D  h-m-s P'}}</b>
+                
+                {{q.desc|truncatechars:50}}
+                <br>
+                {% if q.ques_img %}
+                <img src="../../media/{{q.ques_img}}" height="100px" width="100px" >        
+                {% endif %}
+                
+                <br>
+                Votes: {{q.ques_votes}}
+
+                <br>
+
+                    
+                 {{q.ques_cat}}
+
+            </td>
+            <br>
+        </tr>
+
+        {% endfor %}
+    </table>
+</body>
+</html>
